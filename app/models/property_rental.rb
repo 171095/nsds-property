@@ -1,0 +1,2 @@
+class PropertyRental < ApplicationRecord
+end

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  address_line1: MyText
+  address_line2: MyText
+  property_type: MyString
+  property_size: 1
+  description: MyText
+  rental_price: 1
+
+two:
+  name: MyString
+  address_line1: MyText
+  address_line2: MyText
+  property_type: MyString
+  property_size: 1
+  description: MyText
+  rental_price: 1
