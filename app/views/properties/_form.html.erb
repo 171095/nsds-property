@@ -1,0 +1,76 @@
+<%= form_for @property, :html => { :class => "form-horizontal property" } do |f| %>
+
+  <% if @property.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @property.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address_line1, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :address_line1, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:address_line1) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address_line2, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :address_line2, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:address_line2) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :property_type, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :property_type, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:property_type) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :property_size, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :property_size, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:property_size) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :description, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:description) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :rental_price, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :rental_price, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:rental_price) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                properties_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

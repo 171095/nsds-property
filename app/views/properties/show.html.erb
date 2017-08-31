@@ -1,0 +1,47 @@
+<div class="col-md-8">
+  <h1><%= @property.name %>, <%= @property.address_line1 %>, <%= @property.address_line2 %></h1>
+  <h1>Amenities</h1>
+  <h1>Indoor</h1>
+  
+<% indoor_amenities(@property.id).each do |amenity| %> 
+  <tr>
+    <td><%= amenity.name %></td><br>
+  </tr>
+  <% end %>
+
+  <h1>Outdoor</h1>
+  <% outdoor_amenities(@property.id).each do |amenity| %> 
+  <tr>
+    <td><%= amenity.name %></td><br>
+  </tr>
+  <% end %>
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+  properties_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+  edit_property_path(@property), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  property_path(@property),
+  :method => 'delete',
+  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+  :class => 'btn btn-danger' %>
+</div>
+
+<div class="col-md-4">
+  <div class="price">
+    <i class="fa fa-inr fa-1x" aria-hidden="true"></i>
+    <span class="money"><%= @property.rental_price %></span>
+     <em class="month">/Month</em>
+</div>
+
+  <div class="col-md-5">
+    Property Type:<br>
+    Size:<br>
+    Description
+  </div>
+
+  <div class="col-md-7">
+    <%= @property.property_type %><br>
+    <%= @property.property_size %>sqft<br>
+    <%= @property.description %><br>
+  </div>
+</div>

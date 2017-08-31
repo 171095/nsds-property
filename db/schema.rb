@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831062639) do
+ActiveRecord::Schema.define(version: 20170831093947) do
 
-  create_table "property_rentals", force: :cascade do |t|
+  create_table "amenities", force: :cascade do |t|
+    t.boolean  "indoor"
+    t.boolean  "outdoor"
     t.string   "name"
-    t.text     "address_line1"
-    t.text     "address_line2"
+    t.integer  "property_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["property_id"], name: "index_amenities_on_property_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address_line1"
+    t.string   "address_line2"
     t.string   "property_type"
     t.integer  "property_size"
     t.text     "description"

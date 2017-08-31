@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  is_indoor?: false
+  name: MyString
+  property: one
+
+two:
+  is_indoor?: false
+  name: MyString
+  property: two
