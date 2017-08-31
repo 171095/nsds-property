@@ -44,6 +44,6 @@ class AmenitiesController < ApplicationController
  
   private
     def amenity_params
-      params.require(:amenity).permit(:name, :indoor, :outdoor, :property_id)
+      params.require(:amenity).permit(:name, :amenity_icon, :indoor, :outdoor, :property_id)
     end
 end

@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831093947) do
+ActiveRecord::Schema.define(version: 20170831134612) do
 
   create_table "amenities", force: :cascade do |t|
     t.boolean  "indoor"
     t.boolean  "outdoor"
     t.string   "name"
     t.integer  "property_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "amenity_icon"
     t.index ["property_id"], name: "index_amenities_on_property_id"
   end
 
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170831093947) do
     t.integer  "rental_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "image"
   end
 
 end
