@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831134612) do
+ActiveRecord::Schema.define(version: 20170901082738) do
 
   create_table "amenities", force: :cascade do |t|
     t.boolean  "indoor"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20170831134612) do
     t.index ["property_id"], name: "index_amenities_on_property_id"
   end
 
+  create_table "images", force: :cascade do |t|
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "image"
+    t.string   "imageable_type"
+    t.integer  "imageable_id"
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string   "name"
     t.string   "address_line1"
@@ -33,7 +41,6 @@ ActiveRecord::Schema.define(version: 20170831134612) do
     t.integer  "rental_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.string   "image"
   end
 
 end

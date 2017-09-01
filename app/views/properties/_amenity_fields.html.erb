@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="nested-fields">
+    <h5><%= link_to_remove_association "Delete Amenity", f, class: "btn btn-danger" %></h5>
+    <%= f.label :indoor %>
+    <%= f.check_box :indoor %>
+
+    <%= f.label :outdoor %>
+    <%= f.check_box :outdoor %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :amenity_icon %>
+    <%= f.text_field :amenity_icon %>
+  </div>
+</div>

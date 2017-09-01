@@ -1,20 +1,31 @@
 <div class="col-md-8">
   <h1><%= @property.name %>, <%= @property.address_line1 %>, <%= @property.address_line2 %></h1>
+<!--Image Slider-->
+
+<% @property.images.each do |img| %>
+  <div class="col-md-6">
+    <%= image_tag img.image_url, class: "img-responsive" %>
+  </div>
+<% end %>
+
+<!--Amenities nested-->
+
+<!--Amenities-->
   <h1>Amenities</h1>
   <h3>Indoor</h3>
-  
-<% indoor_amenities(@property.id).each do |amenity| %> 
+  <% indoor_amenities(@property.id).each do |amen| %> 
   <tr>
-    <td><i class="<%= amenity.amenity_icon %>"></i><%= amenity.name %></td><br>
+    <td><i class="<%= amen.amenity_icon %>"></i><%= amen.name %></td><br>
   </tr>
   <% end %>
 
   <h3>Outdoor</h3>
-  <% outdoor_amenities(@property.id).each do |amenity| %> 
+  <% outdoor_amenities(@property.id).each do |amen| %> 
   <tr>
-    <td><i class="<%= amenity.amenity_icon %>"></i><%= amenity.name %></td><br>
+    <td><i class="<%= amen.amenity_icon %>"></i><%= amen.name %></td><br>
   </tr>
   <% end %>
+<!--end-->
 
   <%= link_to t('.back', :default => t("helpers.links.back")),
   properties_path, :class => 'btn btn-default'  %>
