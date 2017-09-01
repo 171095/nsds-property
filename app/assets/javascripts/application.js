@@ -15,5 +15,5 @@
 //= require bootstrap
 //= require turbolinks
 //= require cocoon
-
+//= require jssor.slider-26.1.5.min
 
