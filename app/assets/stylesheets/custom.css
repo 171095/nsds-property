@@ -3,3 +3,19 @@
 }
 .month{font-size: 20px; 
 }
+
+@media screen and (max-width:767px){
+  .prop-name {
+    font-size:18px;
+    /*font-weight: 700;*/
+  }
+  .prop-main-container {
+    padding-left:0px;
+  }
+  .slider-height{
+    max-height: 600px;
+  }
+  .amenity-size h1 ,h3{
+    font-size:18px;
+  }
+}

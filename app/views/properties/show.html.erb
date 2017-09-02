@@ -1,37 +1,5 @@
-<div class="col-md-8">
-  <h1><%= @property.name %>, <%= @property.address_line1 %>, <%= @property.address_line2 %></h1>
-
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-  properties_path, :class => 'btn btn-default'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-  edit_property_path(@property), :class => 'btn btn-default' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-  property_path(@property),
-  :method => 'delete',
-  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-  :class => 'btn btn-danger' %>
-</div>
-
-<div class="col-md-4">
-  <div class="price">
-    <i class="fa fa-inr fa-1x" aria-hidden="true"></i>
-    <span class="money"><%= @property.rental_price %></span>
-     <em class="month">/Month</em>
-</div>
-
-  <div class="col-md-5">
-    Property Type:<br>
-    Size:<br>
-    Description
-  </div>
-
-  <div class="col-md-7">
-    <%= @property.property_type %><br>
-    <%= @property.property_size %>sqft<br>
-    <%= @property.description %><br>
-  </div>
-</div>
-
+<div class="col-md-8 prop-main-container">
+  <h1 class="hidden-xs"><%= @property.name %>, <%= @property.address_line1 %>, <%= @property.address_line2 %></h1>
 
 <!--Image slider Script-->
 
@@ -155,67 +123,119 @@
         .jssort101 .pav .t, .jssort101 .p:hover .t{opacity:1;}
     </style>
 
-<div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+<div id="jssor_1" class="slider-height" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:670px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
-        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
-            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
-        </div>
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
-          <% @property.images.each do |img| %>
-            <div>
-              <%= image_tag img.image_url, class: "img-responsive", "data-u" => "image" %>
-            </div>
-          <% end %>
-            <a data-u="any" href="https://www.jssor.com" style="display:none">javascript slider</a>
-        </div>
-        <!-- Thumbnail Navigator -->
-        <div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
-            <div data-u="slides">
-                <div data-u="prototype" class="p" style="width:190px;height:90px;">
-                    <div data-u="thumbnailtemplate" class="t"></div>
-                    <svg viewbox="0 0 16000 16000" class="cv">
-                        <circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
-                        <line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
-                        <line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
-                    </svg>
-                </div>
-            </div>
-        </div>
-        <!-- Arrow Navigator -->
-        <div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
-            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                <circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
-                <polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
-                <line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
-            </svg>
-        </div>
-        <div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
-            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                <circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
-                <polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
-                <line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
-            </svg>
-        </div>
-    </div>
+  <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+      <%= image_tag "spin.svg", style: "margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" %>
+  </div>
+  <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:550px;overflow:hidden;">
+    <% @property.images.each do |img| %>
+      <div>
+        <%= image_tag img.image_url, class: "img-responsive", "data-u" => "image" %>
+      </div>
+    <% end %>
+      <a data-u="any" href="https://www.jssor.com" style="display:none">javascript slider</a>
+  </div>
+  <!-- Thumbnail Navigator -->
+  <div data-u="thumbnavigator" class="jssort101 hidden-xs " style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+      <div data-u="slides">
+          <div data-u="prototype" class="p" style="width:190px;height:90px;">
+              <div data-u="thumbnailtemplate" class="t"></div>
+              <svg viewbox="0 0 16000 16000" class="cv">
+                  <circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+                  <line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+                  <line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+              </svg>
+          </div>
+      </div>
+  </div>
+  <!-- Arrow Navigator -->
+  <div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:250px;left:30px;" data-scale="0.75">
+      <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          <circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+          <polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+          <line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+      </svg>
+  </div>
+  <div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:250px;right:30px;" data-scale="0.75">
+      <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          <circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+          <polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+          <line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+      </svg>
+  </div>
+</div>
 
+<h1 class="visible-xs prop-name"><%= @property.name %>, <%= @property.address_line1 %>, <%= @property.address_line2 %></h1>
 
-    <script type="text/javascript">jssor_1_slider_init();</script>
+<script type="text/javascript">jssor_1_slider_init();</script>
+
+</div>
+
+<div class="col-md-4">
+  <div class="price">
+    <i class="fa fa-inr fa-1x" aria-hidden="true"></i>
+    <span class="money"><%= @property.rental_price %></span>
+     <em class="month">/Month</em>
+</div>
+
+  <div class="col-md-5">
+    Property Type:<br>
+    Size:<br>
+    Description
+  </div>
+
+  <div class="col-md-7">
+    <%= @property.property_type %><br>
+    <%= @property.property_size %>sqft<br>
+    <%= @property.description %><br>
+  </div>
+</div>
 
 <!--Amenities-->
-<div class="col-md-6">
-  <h1>Amenities</h1>
-  <h3>Indoor</h3>
-  <% indoor_amenities(@property.id).each do |amen| %> 
-  <tr>
-    <td><i class="<%= amen.amenity_icon %>"></i><%= amen.name %></td><br>
-  </tr>
-  <% end %>
+<div class="col-md-6 amenity-size">
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Indoor</h1>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <% indoor_amenities(@property.id).each do |amen| %> 
+          <div class="col-md-4">
+            <i class="<%= amen.amenity_icon %>"></i><%= amen.name %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-  <h3>Outdoor</h3>
-  <% outdoor_amenities(@property.id).each do |amen| %> 
-  <tr>
-    <td><i class="<%= amen.amenity_icon %>"></i><%= amen.name %></td><br>
-  </tr>
-  <% end %>
+<div class="row">
+    <div class="col-md-3">
+      <h3>Outdoor</h1>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <% outdoor_amenities(@property.id).each do |amen| %>  
+          <div class="col-md-4">
+            <i class="<%= amen.amenity_icon %>"></i><%= amen.name %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+ <%= link_to t('.back', :default => t("helpers.links.back")),
+  properties_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+  edit_property_path(@property), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  property_path(@property),
+  :method => 'delete',
+  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+  :class => 'btn btn-danger' %>
 </div>
+
 <!--end-->
+
+
