@@ -126,7 +126,7 @@
 <div id="jssor_1" class="slider-height" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:670px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
   <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
-      <%= image_tag "spin.svg", style: "margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" %>
+    <%= image_tag "spin.svg", style: "margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" %>
   </div>
   <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:550px;overflow:hidden;">
     <% @property.images.each do |img| %>
@@ -172,6 +172,7 @@
 
 </div>
 
+<!--slider end-->
 <div class="col-md-4">
   <div class="price">
     <i class="fa fa-inr fa-1x" aria-hidden="true"></i>
@@ -180,18 +181,34 @@
 </div>
 
   <div class="col-md-5">
-    Property Type:<br>
-    Size:<br>
-    Description
+    <dd> Property Type: </dd>
+    <dd> Size: </dd>
+    <dd> Description </dd>
+    <hr>
   </div>
 
   <div class="col-md-7">
-    <%= @property.property_type %><br>
-    <%= @property.property_size %>sqft<br>
-    <%= @property.description %><br>
+     <dd><%= @property.property_type %></dd>
+     <dd><%= @property.property_size %>sqft</dd>
+     <dd><%= @property.description %></dd>
+     <hr>
   </div>
+
+  <div class="col-md-5 agent-img">
+   <dd><%= image_tag @property.agent.image_url %> </dd>
+  </div>
+
+  <div class="col-md-7 ag-details">
+<%= link_to @property.agent.name , agent_path(@property.agent) %>
+     <dd><%= @property.agent.address %></dd>  
+     <dd><%= @property.agent.contact %></dd> 
+ </div>
+
 </div>
 
+<div>
+
+</div>
 <!--Amenities-->
 <div class="col-md-6 amenity-size">
   <div class="row">
@@ -201,7 +218,7 @@
     <div class="col-md-9">
       <div class="row">
         <% indoor_amenities(@property.id).each do |amen| %> 
-          <div class="col-md-4">
+          <div class="col-md-4" style="margin-top:25px;">
             <i class="<%= amen.amenity_icon %>"></i><%= amen.name %>
           </div>
         <% end %>
@@ -210,20 +227,23 @@
   </div>
 
 <div class="row">
+  <% if outdoor_amenities(@property.id).length > 0 %>
     <div class="col-md-3">
       <h3>Outdoor</h1>
     </div>
     <div class="col-md-9">
       <div class="row">
         <% outdoor_amenities(@property.id).each do |amen| %>  
-          <div class="col-md-4">
+          <div class="col-md-4" style="margin-top:25px;">
             <i class="<%= amen.amenity_icon %>"></i><%= amen.name %>
           </div>
-        <% end %>
+        <% end  %>
       </div>
     </div>
+  <% end %>
   </div>
-
+<div>
+ </div>
 
  <%= link_to t('.back', :default => t("helpers.links.back")),
   properties_path, :class => 'btn btn-default'  %>
@@ -236,6 +256,30 @@
   :class => 'btn btn-danger' %>
 </div>
 
-<!--end-->
+<!-- goole-map -->
+<div id="map"></div>
+<!-- Script for Map-->
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIioyDVG6q9NO3_1xpMEruSUAE7xu9Nto&callback=initMap">
+    </script>
+<style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+    
+    <script>
+  function initMap() {
 
-
+    var uluru = {lat: 22.68656, lng: 76.96544};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 8,
+      center: uluru
+    });
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map
+    });
+  }
+</script>

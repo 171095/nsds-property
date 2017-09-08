@@ -3,7 +3,7 @@ class PropertiesController < ApplicationController
     @properties = Property.all
 
   end
- 
+
   def show
     @property = Property.find(params[:id])
     
@@ -43,10 +43,14 @@ class PropertiesController < ApplicationController
  
     redirect_to properties_path
   end
- 
+  def get_state_cities
+    @state = State.find(params[:state_id])
+    @cities = @state.cities
+  end
+
   private
     def property_params
-      params.require(:property).permit(:name, :address_line1, :address_line2, :property_type, :property_size, :description, :rental_price, images_attributes: [:id,:image, :imageable_id, :imageable_type, :_destroy],
+      params.require(:property).permit(:name, :address_line1, :address_line2, :property_type, :property_size, :description, :rental_price, :agent_id, :zipcode, :state_id, :city_id, images_attributes: [:id,:image, :imageable_id, :imageable_type, :_destroy],
         amenities_attributes: [:id, :indoor, :outdoor, :name, :property_id, :amenity_icon, :_destroy])
     end
 end

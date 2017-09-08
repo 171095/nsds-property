@@ -55,6 +55,7 @@ gem "twitter-bootstrap-rails"
 gem "font-awesome-rails"
 gem 'carrierwave', '~> 1.0'
 gem "cocoon"
+gem "geocoder"
 
 group :production do
   gem 'pg'

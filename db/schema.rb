@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901082738) do
+ActiveRecord::Schema.define(version: 20170908130428) do
+
+  create_table "agents", force: :cascade do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "contact"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "amenities", force: :cascade do |t|
     t.boolean  "indoor"
@@ -21,6 +30,14 @@ ActiveRecord::Schema.define(version: 20170901082738) do
     t.datetime "updated_at",   null: false
     t.string   "amenity_icon"
     t.index ["property_id"], name: "index_amenities_on_property_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -41,6 +58,19 @@ ActiveRecord::Schema.define(version: 20170901082738) do
     t.integer  "rental_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "agent_id"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "zipcode"
+    t.index ["agent_id"], name: "index_properties_on_agent_id"
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

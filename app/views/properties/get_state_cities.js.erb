@@ -1,0 +1,5 @@
+var options = '<option value="">Select City</option>';
+<% @cities.each do |city|%>
+options += '<option value="<%= city.id%>"><%= city.name%></option>'
+<%end%>
+$("#property_city_id").html(options);

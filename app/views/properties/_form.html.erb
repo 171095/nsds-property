@@ -66,6 +66,38 @@
 </div>
 
 <div class="form-group">
+    <%= f.label :agent_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :agent_id, options_for_select(Agent.all.collect {|a| [ a.name, a.id ] },(f.object.try(:category_id))),{prompt: 'Select an agent'}, { :class => 'form-control'} %>
+    </div>
+    <%=f.error_span(:agent_id) %>
+</div>
+
+<div class="form-group">
+    <%= f.label :state_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :state_id, options_for_select(State.all.collect {|s| [ s.name, s.id ] },(f.object.try(:category_id))),{prompt: 'Select an state'}, { :class => 'form-control'} %>
+    </div>
+    <%=f.error_span(:state_id) %>
+</div>
+
+<div id="city-drop-down" class="form-group">
+    <%= f.label :city_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :city_id, options_for_select(City.all.collect {|c| [ c.name, c.id ] },(f.object.try(:category_id))),{prompt: 'Select an city'}, { :class => 'form-control'} %>
+    </div>
+    <%=f.error_span(:city_id) %>
+</div>
+
+<div class="form-group">
+  <%= f.label :zipcode, :class => 'control-label col-lg-2' %>
+  <div class="col-lg-10">
+    <%= f.text_field :zipcode, :class => 'form-control' %>
+  </div>
+  <%=f.error_span(:zipcode) %>
+</div>
+
+<div class="form-group">
   <strong>Images</strong>
   <div class="form-group">
     <%= f.fields_for :images do |image| %>
@@ -84,7 +116,6 @@
     <%= link_to_add_association "Add Amenities", f, :amenities, class: "btn btn-primary" %>
   </div>
 </div>
-
 <div class="form-group">
   <div class="col-lg-offset-2 col-lg-10">
     <%= f.submit nil, :class => 'btn btn-primary' %>
@@ -94,3 +125,16 @@
 </div>
 
 <% end %>
+
+
+<script type="text/javascript">
+  $("#property_state_id").on('change', function(){
+    var stateId = $('select#property_state_id :selected').val();
+    // $("#city-drop-down").css("display", "block");
+    $.ajax({
+      url: "<%= get_state_cities_properties_path %>",
+      type: "GET",
+      data: {state_id : stateId }
+    });
+  });
+</script>
