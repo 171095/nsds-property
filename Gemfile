@@ -56,6 +56,7 @@ gem "font-awesome-rails"
 gem 'carrierwave', '~> 1.0'
 gem "cocoon"
 gem "geocoder"
+gem 'ransack'
 
 group :production do
   gem 'pg'

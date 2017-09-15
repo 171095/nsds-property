@@ -20,13 +20,13 @@ class Property < ApplicationRecord
     self.amenities.where(indoor: true).size
   end
 
- geocoded_by :full_address
-   
+  geocoded_by :full_address  
+
   after_validation :geocode  
   
 
   def full_address
-    "#{self.state},  #{self.city}, #{self.zipcode}"
+    "#{self.state.try(:name)},  #{self.city.try(:name)}, #{self.zipcode}"
   end
 
 

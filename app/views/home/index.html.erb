@@ -2,3 +2,8 @@
 <%= link_to 'Properties', properties_path %><br>
 <%= link_to 'Amenities', amenities_path %><br>
 <%= link_to 'Agents', agents_path %>
+
+<%= search_form_for @q, url: :properties, method: "get" do |f| %> 
+    <%= f.search_field :name_cont %>
+    <%= f.submit %>
+<% end %>  

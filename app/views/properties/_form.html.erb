@@ -123,10 +123,9 @@
     properties_path, :class => 'btn btn-default' %>
   </div>
 </div>
-
 <% end %>
 
-
+<!--script for selecting city according to state-->
 <script type="text/javascript">
   $("#property_state_id").on('change', function(){
     var stateId = $('select#property_state_id :selected').val();
@@ -138,3 +137,4 @@
     });
   });
 </script>
+<!-- end of script-->
