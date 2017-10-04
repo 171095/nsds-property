@@ -57,6 +57,7 @@ gem 'carrierwave', '~> 1.0'
 gem "cocoon"
 gem "geocoder"
 gem 'ransack'
+gem 'devise'
 
 group :production do
   gem 'pg'

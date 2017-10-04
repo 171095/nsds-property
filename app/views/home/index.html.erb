@@ -1,9 +1,41 @@
-<h1>NSDS-PROPERTIES</h1>
 <%= link_to 'Properties', properties_path %><br>
 <%= link_to 'Amenities', amenities_path %><br>
-<%= link_to 'Agents', agents_path %>
+<%= link_to 'Agents', agents_path %> 
 
-<%= search_form_for @q, url: :properties, method: "get" do |f| %> 
+<%= search_form_for @q, url: :find_property_by_serach_properties, method: "get" do |f| %>
     <%= f.search_field :name_cont %>
-    <%= f.submit %>
-<% end %>  
+    <%= f.submit :class => "btn btn-warning btn-mini" %>
+<%end %> 
+
+<!-- bootstrap -->
+ <nav class="navbar navbar-default">
+     <div class="col-md-1 logo-img">
+         <%= image_tag "canva-photo-editor.png"%>
+     </div>
+     
+ </nav> 
+
+<!--Sign-in-button-->
+<% if !user_signed_in? %>
+<%= link_to "Sign In", new_user_session_path, class: "btn btn-primary", remote: true, "data-toggle" => "modal", "data-target" => "#loginModal" %>
+<%end%>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+</div>
+
+<!--Sign-Up-button-->
+<% if !user_signed_in? %>
+<%= link_to "Sign Up",  new_user_registration_path  , class: "btn btn-primary", remote: true, "data-toggle" => "modal", "data-target" => "#signupModal" %>
+<%end%>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+</div>
+
+<div class="modal fade" id="recoverableModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+</div>
+
+<div id="alertModal">
+</div>
+<% if user_signed_in? %>
+  <div id="auth-section">
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete, remote: true  %>
+  </div>
+<% end %>

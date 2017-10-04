@@ -29,5 +29,4 @@ class Property < ApplicationRecord
     "#{self.state.try(:name)},  #{self.city.try(:name)}, #{self.zipcode}"
   end
 
-
 end

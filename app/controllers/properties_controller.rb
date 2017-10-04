@@ -1,7 +1,6 @@
 class PropertiesController < ApplicationController
   def index
     @properties = Property.all
-
   end
 
   def show
@@ -46,6 +45,11 @@ class PropertiesController < ApplicationController
   def get_state_cities
     @state = State.find(params[:state_id])
     @cities = @state.cities
+  end
+
+  def find_property_by_serach
+    @city = City.find_by(name: params[:q][:name_cont])
+    @properties = @city.properties if @city.properties.present?
   end
 
   private

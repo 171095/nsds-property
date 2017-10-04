@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  $("#loginModal").modal('hide')
+  $("#alertModal").html("<%= escape_javascript render(partial: 'users/sessions/create')%>")
+  // $("#signout").show();
+  // <% else%>
+  //  $(".signout").hide();
+<% end %>

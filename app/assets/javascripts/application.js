@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
-//= require turbolinks
+//= require twitter/bootstrap
 //= require cocoon
 //= require jssor.slider-26.1.5.min
 

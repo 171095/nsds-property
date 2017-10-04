@@ -9,6 +9,19 @@
 .ag-details {
   margin-top:10px;
 }
+.logo-img{
+  max-width: 173px;
+  max-height: 51px;
+}
+/*.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}*/
+/*.fade {
+    opacity: 0;
+    -webkit-transition: opacity 1s linear;
+    transition: opacity 1s linear;
+}*/
 @media screen and (max-width:767px){
   .prop-name {
     font-size:18px;
@@ -23,4 +36,3 @@
   .amenity-size h1 ,h3{
     font-size:18px;
   }
-}
